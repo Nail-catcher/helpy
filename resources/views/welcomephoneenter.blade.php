@@ -31,7 +31,7 @@
                         <input class="input" type="text" id="pass" placeholder="Введите код">
                     </div>
                     <div class="form__bottom">
-                        <a class="button button-primary" onclick="getUser()" type="submit">Отправить повторно</a>
+                        <a class="button button-primary"type="submit">Отправить повторно</a>
                     </div>
                 </form>
                 <div class="enter__form-main-tt">Не пришел код? Нажмите кнопку «Отправить повторно»</div>
@@ -40,8 +40,9 @@
     </div>
 </div>
 <script>
+    let input = document.getElementById('pass');
+    input.addEventListener("keydown",  ()=> {
 
-    function getUser() {
         const url = '{{ route('getUser') }}';
         const data = {
             phone: '+'+document.getElementById("phone").value,
@@ -70,6 +71,6 @@
             });
 
 
-    }
+    });
 </script>
     @endsection
