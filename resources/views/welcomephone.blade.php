@@ -3,16 +3,16 @@
 @section('content')
 <div class="enter">
     <div class="enter__banner">
-        <div class="enter__banner-inner"><a class="logo" href="#"><img src="assets/images/svg/logo.svg" alt=""></a>
+        <div class="enter__banner-inner"><a class="logo" href="#"><img src="{{asset('fckingassets/assets/images/svg/logo.svg')}}" alt=""></a>
             <div class="enter__banner-list">
-                <div class="enter__banner-foto on"><img src="assets/images/foto2.png" alt="">
-                    <div class="enter__banner-foto-line"><img src="assets/images/svg/line1.svg" alt=""></div>
+                <div class="enter__banner-foto on"><img src="{{asset('fckingassets/assets/images/foto2.png')}}" alt="">
+                    <div class="enter__banner-foto-line"><img src="{{asset('fckingassets/assets/images/svg/line1.svg')}}" alt=""></div>
                 </div>
-                <div class="enter__banner-foto tw"><img src="assets/images/foto1.png" alt=""></div>
-                <div class="enter__banner-foto th"><img src="assets/images/foto3.png" alt="">
-                    <div class="enter__banner-foto-line"><img src="assets/images/svg/line3.svg" alt=""></div>
+                <div class="enter__banner-foto tw"><img src="{{asset('fckingassets/assets/images/foto1.png')}}" alt=""></div>
+                <div class="enter__banner-foto th"><img src="{{asset('fckingassets/assets/images/foto3.png')}}" alt="">
+                    <div class="enter__banner-foto-line"><img src="{{asset('fckingassets/assets/images/svg/line3.svg')}}" alt=""></div>
                 </div>
-                <div class="enter__banner-foto fr"><img src="assets/images/foto4.png" alt=""></div>
+                <div class="enter__banner-foto fr"><img src="{{asset('fckingassets/assets/images/foto4.png')}}" alt=""></div>
             </div>
             <div class="enter__banner-tx">
                 <h1>Добро пожаловать<br> в систему Helpy</h1>
@@ -26,7 +26,7 @@
                 <div class="enter__form-title">Результаты анализов</div>
                 <form>
                     <div class="form__cell">
-                        <input class="input" type="text" id = "phone" placeholder="Введите номер телефона">
+                        <input class="input" type="text" id = "phone" placeholder="Введите номер телефона" value="+7">
                     </div>
                     <div class="form__bottom">
                         <a class="button button-primary" onclick="getCode()" type="submit">Получить код</a>

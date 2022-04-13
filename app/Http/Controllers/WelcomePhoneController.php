@@ -42,20 +42,29 @@ class WelcomePhoneController extends Controller
 
 
         $request->validate([
-            'phone' => ['required'],
-
+            'phone' => ['nullable'],
+            'email' => ['nullable'],
             'password' => ['required'],
         ]);
         //$user = User::where(['phone' => $request->phone])->first();
-
-
-            if (Auth::attempt($request->only('phone', 'password'))) {
-                return response()->json(Auth::user(), 200);
+            if($request->email){
+                if (Auth::attempt($request->only('email', 'password'))) {
+                    return response()->json(Auth::user(), 200);
             }
+            return response()->json(['error' => true,  'message' => 'Введен неверный логин или пароль'], 400);
+
+
+            } else{
+                if (Auth::attempt($request->only('phone', 'password'))) {
+                    return response()->json(Auth::user(), 200);
+                }
 
 
             return response()->json(['error' => true,  'message' => 'Введен неверный логин или пароль'], 400);
-        }
+            }
+
+
+            }
 
 
 

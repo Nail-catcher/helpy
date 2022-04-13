@@ -32,7 +32,7 @@ $(document).ready(function () {
     });
 
     $(function () {
-        var dateFormat = "mm/dd/yy",
+        var dateFormat = "dd/mm/yyyy",
             from = $("#from").datepicker({
             showOtherMonths: true,
             selectOtherMonths: true,

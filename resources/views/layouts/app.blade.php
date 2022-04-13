@@ -135,7 +135,7 @@
                         <div class="modal-form__row">
                             <div class="modal-form__title">Номер телефона</div>
                             <div class="modal-form__inp">
-                                <input class="input" name="Thing" type="tel" id="phone" placeholder="Телефон" value="">
+                                <input class="input" name="Thing" type="tel"  id="phone" placeholder="Телефон" value="+7">
                             </div>
                         </div>
                         <div class="modal-form__row">
@@ -211,7 +211,7 @@
                             <input class="input" type="hidden"  id = "editid" placeholder="Телефон" value="">
                             <div class="modal-form__title">Номер телефона</div>
                             <div class="modal-form__inp">
-                                <input class="input" type="tel"  id = "editphone" placeholder="Телефон" value="">
+                                <input class="input" type="tel"  id = "editphone"  placeholder="Телефон" value="">
                             </div>
                         </div>
                         <div class="modal-form__row">
@@ -259,10 +259,15 @@
                         </div>
 
                         <div class="modal-form__row">
-                            <div class="modal-form__title">Анализ</div>
+                            <div class="modal-form__title">Анализ
+                            <br>
+                                <a id="hehhah" download>Посмотреть</a>
+                            </div>
+
+
                             <div class="modal-form__inp file">
                                 <div class="fl">
-                                    <label for="attachment"><a class="bt" role="button" aria-disabled="false"><svg><use xlink:href="#add"></use></svg> Добавить файл</a></label><input type="file" name="file[]"  id="editattachment" style="visibility: hidden; position: absolute;" multiple/>
+                                    <label for="attachment"><a class="bt" role="button" aria-disabled="false"><svg><use xlink:href="#add"></use></svg> Изменить файл</a></label><input type="file" name="file[]"  id="editattachment" style="visibility: hidden; position: absolute;" multiple/>
                                 </div>
                                 <div id="files-area"><span id="filesList"><span id="files-names"></span></span></div>
                             </div>
@@ -287,7 +292,7 @@
 <script>
     var el = document.getElementById("phone");
     el.addEventListener("keydown",  ()=>{
-        if(el.value.length>=11){
+
             fetch('/api/lk?phone='+el.value, {
                 method: 'GET',
                 redirect: 'follow',
@@ -303,7 +308,7 @@
                     // обработка ошибки
                     console.log(error);
                 });
-        }
+
 
 
 
@@ -326,7 +331,10 @@
         fetch('{{ route('analyzes.store') }}', {
             method: 'POST',
             body: data
-        })
+        }).then(response=>(
+            window.location.reload()
+            // console.log(response)
+        ))
     }
     document.getElementById("btn").onclick = storeAnal;
 
@@ -342,6 +350,8 @@
         document.location.href = ' /admin?search='+search;
     }
     document.getElementById("admsearchbtn").onclick =admsearch;
+
+
 
 
 

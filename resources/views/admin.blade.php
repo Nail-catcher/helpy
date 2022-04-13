@@ -37,7 +37,7 @@
                                 <div class="results__tbl-cell">
                                     <div class="results__tbl-cl-in">
                                         <div class="results__tbl-cl"><input type="text" id="from" name="from"></div>
-                                        <div class="results__tbl-cl"><input type="text" id="to" name="to"></div>
+                                        <div class="results__tbl-cl"><input type="text" id="to" name="to" ></div>
                                     </div>
                                 </div>
                             </div>
@@ -142,6 +142,10 @@ function dataUpdateAnal(analyze) {
    document.getElementById("editemail").value=analyze.user.email
    document.getElementById("editanalname").value=analyze.name
     document.getElementById("editcl").value=analyze.date
+
+    // document.getElementById('hfr').innerHTML=href;
+    document.querySelector('a[id="hehhah"]').setAttribute('href', 'storage/uploads/'+analyze.url);
+
 }
 
     function updateAnal() {
@@ -167,7 +171,10 @@ function dataUpdateAnal(analyze) {
 
                 'x-csrf-token': csrfToken
             }
-        })
+        }).then(response=>(
+            window.location.reload()
+            // console.log(response)
+        ))
     }
 
     var secdateel = document.getElementById("to");

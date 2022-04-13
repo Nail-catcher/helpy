@@ -4,7 +4,7 @@
 
 <div class="enter">
     <div class="enter__banner">
-        <div class="enter__banner-inner"><a class="logo" href="#"><img src="assets/images/svg/logo.svg" alt=""></a>
+        <div class="enter__banner-inner"><a class="logo" href="#"><img src="{{asset('fckingassets/assets/images/svg/logo.svg')}}" alt=""></a>
             <div class="enter__banner-list">
                 <div class="enter__banner-foto on"><img src="{{asset('fckingassets/assets/images/foto2.png')}}" alt="">
                     <div class="enter__banner-foto-line"><img src="{{asset('fckingassets/assets/images/svg/line1.svg')}}" alt=""></div>

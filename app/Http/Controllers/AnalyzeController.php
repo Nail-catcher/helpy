@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AnalyzeStore;
 use App\Http\Resources\AnalyzesResource;
 use App\Models\Analyze;
+use App\Models\NamingAnalyze;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -98,7 +99,7 @@ class AnalyzeController extends Controller
     {
         $data=$request;
         $file = $request->file('file')->store('public/uploads');
-        $user = User::firstOrCreate(['phone'=>'+'.$data['phone'] ]
+        $user = User::firstOrCreate(['phone'=>$data['phone'] ]
             ,[
                 'frist_name'=>$data['first_name'],
                 'second_name'=>$data['second_name'],
@@ -108,10 +109,10 @@ class AnalyzeController extends Controller
             ]
 
         );
-
+        $nameanal=NamingAnalyze::where('index',$data['analname'])->first();
         $analyze = Analyze::whereId($request->id)->first();
-        $analyze->name= $data['analname'];
-        $analyze->date=Carbon::parse($data['date'])->format('d.m,Y');
+        $analyze->name= $nameanal->name;
+        $analyze->date=Carbon::parse($data['date'])->format('Y.m.d');
         $analyze->inz=$data['inz'];
 //            'date'=>Carbon::now(),
         $analyze->user_id=$user->id;
@@ -135,13 +136,15 @@ class AnalyzeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AnalyzeStore $request)
+//    public function store(Request $request)
     {
-//        return $request;
+
         $data = $request->validated();
-//        $data = $request;
+//        return Carbon::parse($data['date'])->format('d.m.Y');
+        //        $data = $request;
 //        dd($data);
         $file = $request->file('file')->store('public/uploads');
-        $user = User::firstOrCreate(['phone'=>'+'.$data['phone'] ]
+        $user = User::firstOrCreate(['phone'=>$data['phone'] ]
         ,[
                 'frist_name'=>$data['first_name'],
                 'second_name'=>$data['second_name'],
@@ -156,16 +159,18 @@ class AnalyzeController extends Controller
 //            //'phone'=>$data['phone'],
 //            'role'=>2,
 //        ]);
+
+        $nameanal=NamingAnalyze::where('index',$data['analname'])->first();
         $analyze = new Analyze([
-           'name' => $data['analname'],
-            'date'=>Carbon::parse($data['date'])->format('d.m,Y'),
+           'name' => $nameanal->name,
+            'date'=>Carbon::parse($data['date'])->format('Y.m.d'),
             'inz'=>$data['inz'],
 //            'date'=>Carbon::now(),
             'user_id'=>$user->id,
 
             'url'=>basename($file),
         ]);
-
+//        return $analyze;
         $analyze->save();
         return $analyze;
 

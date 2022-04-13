@@ -12,7 +12,6 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-
         if(Auth::user()->role==1){
         $countanal=Analyze::count();
         if($request->search and !empty($request->search)){
@@ -36,7 +35,7 @@ class AdminController extends Controller
 //dd($analyzes);
     return view('admin', ['analyzes'=>$analyzes,'pages'=>$pages]);
             } else {
-            return redirect()->to('/');
+            return redirect()->to('/welcomeadmin');
         }
     }
 }

@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::get('/simpleanalyzes', [\App\Http\Controllers\WebAnalyzeController::class, 'index']);
+
+Route::get('/welcomeadmin', [\App\Http\Controllers\WelcomeAdminController::class, 'index']);
 Route::get('/welcomephone', [\App\Http\Controllers\WelcomePhoneController::class, 'index']);
 Route::get('/welcomephone/enter', [\App\Http\Controllers\WelcomePhoneController::class, 'enter']);
 Route::post('/welcomephone', [\App\Http\Controllers\WelcomePhoneController::class, 'auth'])->name('getcode');
