@@ -98,7 +98,7 @@ class AnalyzeController extends Controller
     public function updateAnal(Request $request)
     {
         $data=$request;
-        $file = $request->file('file')->store('public/uploads');
+
         $user = User::firstOrCreate(['phone'=>$data['phone'] ]
             ,[
                 'frist_name'=>$data['first_name'],
@@ -109,15 +109,21 @@ class AnalyzeController extends Controller
             ]
 
         );
-        $nameanal=NamingAnalyze::where('index',$data['analname'])->first();
+
         $analyze = Analyze::whereId($request->id)->first();
+        if($data['analname']!=$analyze->name){
+        $nameanal=NamingAnalyze::where('index',$data['analname'])->first();
         $analyze->name= $nameanal->name;
+        }
         $analyze->date=Carbon::parse($data['date'])->format('Y.m.d');
         $analyze->inz=$data['inz'];
 //            'date'=>Carbon::now(),
         $analyze->user_id=$user->id;
-
+        if($request->file!='undefined'){
+            $file = $request->file('file')->store('public/uploads');
             $analyze->url=basename($file);
+        }
+
 
 
         $analyze->save();
