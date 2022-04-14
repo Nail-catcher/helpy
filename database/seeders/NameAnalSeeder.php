@@ -16,7 +16,7 @@ class NameAnalSeeder extends Seeder
     public function run()
     {
 
-        Excel::import(new NameAnalImport(), storage_path('app/public/data/data.xlsx'), null, \Maatwebsite\Excel\Excel::XLSX);
+        Excel::import(new NameAnalImport(), storage_path('data/data.xlsx'), null, \Maatwebsite\Excel\Excel::XLSX);
 
 
     }
