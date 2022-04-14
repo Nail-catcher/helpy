@@ -57,7 +57,7 @@
                                 <div class="results__tbl-cell">
                                     <div class="results__tbl-nb">{{$analyze->inz}}</div>
                                 </div>
-                                <div class="results__tbl-cell"><a class="results__tbl-btn" href="{{$analyze->url}}" download>Скачать</a></div>
+                                <div class="results__tbl-cell"><a class="results__tbl-btn" href="storage/uploads/{{$analyze->url}}" download>Скачать</a></div>
                             </div>
                             @endforeach
 
