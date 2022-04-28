@@ -1,8 +1,24 @@
 'use strict';
 
 $(document).ready(function () {
+
+    $('.modal').on('shown.bs.modal', function (e) {
+        $(this).find('.select select').select2({
+            allowClear: true,
+            dropdownParent: $(this).find('.modal-content')
+        });
+    });
+
     $(".results__tbl-row").on('click', function (event) {
         $(this).toggleClass('check');
+    });
+
+    $(".header__user-top").on('click', function (event) {
+        $(this).parent().toggleClass('open');
+    });
+
+    $(".header-mob__user").on('click', function (event) {
+        $(this).parent().toggleClass('open');
     });
 
     $(".pages__title").on('click', function (event) {
@@ -21,10 +37,11 @@ $(document).ready(function () {
     });
 
     $("#cl").datepicker({
+        changeMonth: true,
+        changeYear: true,
         showOtherMonths: true,
         selectOtherMonths: true,
         defaultDate: "+1w",
-        changeMonth: true,
         numberOfMonths: 1,
         minDate: new Date($('#hiddendelivdate').val()),
         monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -32,12 +49,13 @@ $(document).ready(function () {
     });
 
     $(function () {
-        var dateFormat = "dd/mm/yyyy",
+        var dateFormat = "mm/dd/yy",
             from = $("#from").datepicker({
+            changeMonth: true,
+            changeYear: true,
             showOtherMonths: true,
             selectOtherMonths: true,
             defaultDate: "+1w",
-            changeMonth: true,
             numberOfMonths: 1,
             minDate: new Date($('#hiddendelivdate').val()),
             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
@@ -46,10 +64,11 @@ $(document).ready(function () {
             to.datepicker("option", "minDate", getDate(this));
         }),
             to = $("#to").datepicker({
+            changeMonth: true,
+            changeYear: true,
             showOtherMonths: true,
             selectOtherMonths: true,
             defaultDate: "+1w",
-            changeMonth: true,
             numberOfMonths: 1,
             minDate: new Date($('#hiddendelivdate').val()),
             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],

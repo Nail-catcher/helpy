@@ -64,10 +64,22 @@
                             </div>
                         </div>
                         <div class="profile__row bottom">
-                            <a class="button button-primary" onclick="updateUser()" type="button">Сохранить изменения</a>
+                            <a class="button button-primary" onclick="updateUser()" data-bs-toggle="modal" data-bs-target="#modalThanks" type="button">Сохранить изменения</a>
                             <a class="button button-link" onclick="clearForm()" type="button">Сбросить</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalThanks" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-text">
+                    <div class="modal-text-title"> Спасибо!</div>
+                    <p>Изменения успешно внесены</p>
                 </div>
             </div>
         </div>

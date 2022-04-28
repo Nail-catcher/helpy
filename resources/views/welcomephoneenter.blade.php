@@ -6,7 +6,7 @@
     <div class="enter__banner">
         <div class="enter__banner-inner"><a class="logo" href="#"><img src="{{asset('fckingassets/assets/images/svg/logo.svg')}}" alt=""></a>
             <div class="enter__banner-list">
-                <div class="enter__banner-foto on"><img src={{asset('fckingassets/"assets/images/foto2.png')}}" alt="">
+                <div class="enter__banner-foto on"><img src="{{asset('fckingassets/assets/images/foto2.png')}}" alt="">
                     <div class="enter__banner-foto-line"><img src="{{asset('fckingassets/assets/images/svg/line1.svg')}}" alt=""></div>
                 </div>
                 <div class="enter__banner-foto tw"><img src="{{asset('fckingassets/assets/images/foto1.png')}}" alt=""></div>
@@ -41,7 +41,7 @@
 </div>
 <script>
     let input = document.getElementById('pass');
-    input.addEventListener("keydown",  ()=> {
+    input.addEventListener("keyup",  ()=> {
 
         const url = '{{ route('getUser') }}';
         const data = {
@@ -58,16 +58,24 @@
                 'x-csrf-token': csrfToken
             }
         }).then(response => response.json())
-            .then(res => (
-                // qwe(res, data.phone)
-                // console.log(res.id)
-                //TODO:обработать ошибку
-                 document.location.href = '/analyzes'
+            .then(res => {
+                    // qwe(res, data.phone)
 
-            ))
+                    //TODO:обработать ошибку
+                    if(res.error == true){
+                        console.log("OK!")
+                    } else {
+                     document.location.href = '/analyzes'
+                    }
+
+
+            }
+
+            )
             .catch(error => {
                 // обработка ошибки
                 console.log(error);
+                console.log(res)
             });
 
 

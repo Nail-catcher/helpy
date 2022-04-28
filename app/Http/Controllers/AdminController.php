@@ -18,7 +18,7 @@ class AdminController extends Controller
             if($request->dateto){
                 $analyzes=Analyze::where('date','<=', Carbon::parse($request->dateto)->format('Y.m.d'))->where('date','>=', Carbon::parse($request->datefrom)->format('Y.m.d') )->where('name','like', $request->search)->orWhere('inz','like', $request->search)->orderBy('id', 'DESC')->paginate($request->paginate ? $request->paginate :10);
             }else {
-                $analyzes=Analyze::where('name','like', $request->search)->orWhere('inz','like', $request->search)->orderBy('id', 'DESC')->paginate($request->paginate ? $request->paginate :10);
+                $analyzes=Analyze::where('name','like', $request->search."%")->orWhere('inz','like', $request->search)->orderBy('id', 'DESC')->paginate($request->paginate ? $request->paginate :10);
 
             }
             } else {

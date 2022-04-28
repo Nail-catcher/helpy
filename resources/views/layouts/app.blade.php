@@ -4,13 +4,16 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <meta name="format-detection" content="telephone=no">
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap">
     <link rel="stylesheet" href="{{asset('fckingassets/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{asset('fckingassets/vendors/select/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('fckingassets/assets/css/app.css')}}">
+
+
 </head>
 <body><svg style="display: none">
     <symbol id="exit" viewBox="0 0 24 24" fill="none">
@@ -165,7 +168,26 @@
                         <div class="modal-form__row">
                             <div class="modal-form__title">№ наименования анализа</div>
                             <div class="modal-form__inp">
-                                <input class="input" type="text"  id="analname" placeholder="Введите № наименования анализа" value="">
+                                {{--<div class="select" >--}}
+
+                                    {{--<select id="cfl">--}}
+                                        {{--<option value="1">№ наименования анализа</option>--}}
+                                        {{--<option value="2">2</option>--}}
+                                    {{--</select>--}}
+                                {{--</div>--}}
+                                <input type="text" class="input"  id="serahanal" name="city" list="citynames">
+                                <datalist id="citynames">
+                                    {{--<option value="Boston">--}}
+                                    {{--<option value="Cambridge">--}}
+                                </datalist>
+                                {{--<input class="input" id="serahanal">--}}
+                                {{--<select class="input" id="hueta">--}}
+
+                                    {{--<option>хуй</option>--}}
+                                    {{--<option>хуй1</option>--}}
+                                    {{--<option>хуй2</option>--}}
+                                {{--</<select>--}}
+
 
                             </div>
                         </div>
@@ -241,8 +263,11 @@
                         <div class="modal-form__row">
                             <div class="modal-form__title">№ наименования анализа</div>
                             <div class="modal-form__inp">
-                                <input class="input" type="text" id = "editanalname" placeholder="Введите № наименования анализа" value="">
-
+                                <input type="text" class="input"  id="editserahanal" name="city" list="citynames">
+                                <datalist id="editcitynames">
+                                    {{--<option value="Boston">--}}
+                                    {{--<option value="Cambridge">--}}
+                                </datalist>
                             </div>
                         </div>
                         <div class="modal-form__row">
@@ -281,17 +306,51 @@
             </div>
         </div>
     </div>
+
 </div>
+
+
 <script src="{{asset('fckingassets/vendors/jquery/dist/jquery.min.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="{{asset('fckingassets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('fckingassets/vendors/select/select2.min.js')}}"></script>
+<script src="{{asset('fckingassets/vendors/select/select2.full.min.js')}}"></script>
 <script src="{{asset('fckingassets/assets/js/app.js')}}"></script>
 
 
-
 <script>
+    const generateList = (data) => {
+
+        console.log(data)
+        let b = document.getElementById('citynames');
+        for (const key in data) {
+            b.innerHTML = null,
+                data[key].data.forEach(e=>(b.innerHTML +='<option value="'+e.index+'">'+e.name+'</option>'));
+        }
+    }
+    var serahanal = document.getElementById("serahanal");
+
+    serahanal.addEventListener("keyup",  ()=> {
+
+        // console.log( serahanal.value);
+        let b = document.getElementById('citynames');
+        const csrfToken = "{{csrf_token()}}"
+        fetch('/api/nameanal?halfindex='+serahanal.value, {
+            method: 'GET',
+
+        })
+            .then(response => response.json())
+            // .then(nameanalyzes=>nameanalyzes.data)
+            .then(nameanalyzes => {
+                generateList(nameanalyzes)
+
+            })
+
+    });
     var el = document.getElementById("phone");
-    el.addEventListener("keydown",  ()=>{
+    el.addEventListener("keyup",  ()=>{
 
             fetch('/api/lk?phone='+el.value, {
                 method: 'GET',
@@ -325,7 +384,7 @@
         data.append( 'middle_name', document.getElementById("middle_name").value)
         data.append( 'inz', document.getElementById("inz").value)
         data.append( 'email', document.getElementById("email").value)
-        data.append( 'analname', document.getElementById("analname").value)
+        data.append( 'analname', document.getElementById("serahanal").value)
         data.append( 'date', document.getElementById("cl").value)
 
         fetch('{{ route('analyzes.store') }}', {
@@ -350,6 +409,18 @@
         document.location.href = ' /admin?search='+search;
     }
     document.getElementById("admsearchbtn").onclick =admsearch;
+
+
+
+
+        {{--let fabric = 1;--}}
+
+        {{--const url = '{{ route('analname') }}';--}}
+        {{--const data = {--}}
+
+            {{--halfindex: search.value,--}}
+        {{--};--}}
+
 
 
 

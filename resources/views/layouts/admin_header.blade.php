@@ -12,9 +12,13 @@
                 </div>
             </div>
             <div class="header__right"><a class="button button-primary" href="#" data-bs-toggle="modal" data-bs-target="#modalAnlz"><img src="{{asset('fckingassets/assets/images/svg/add.svg')}}" alt=''> Добавить анализ</a>
-                <div class="header__user">
+                <div class="header__user"> <div class="header__user-top">
+
                     <div class="header__user-foto"><img src="{{asset('fckingassets/assets/images/ava.jpg')}}" alt=""></div>
                     <div class="header__user-name">admin@mail.com</div>
+                    </div>
+                    <div class="header__user-drop"><a class="header__user-drop-item" href="/">Выход</a></div>
+
                 </div>
             </div>
         </div>

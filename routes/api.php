@@ -20,7 +20,7 @@ Route::post('/updateUser', [\App\Http\Controllers\UserController::class, 'update
 Route::get('/simpleanalyzes', [\App\Http\Controllers\AnalyzeController::class,'simple_index']);
 Route::resource('/analyzes', \App\Http\Controllers\AnalyzeController::class);
 
-Route::get('/nameanal', \App\Http\Controllers\NamingAnalyzeController::class);
+Route::get('/nameanal', \App\Http\Controllers\NamingAnalyzeController::class)->name('analname');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

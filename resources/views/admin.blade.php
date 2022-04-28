@@ -40,6 +40,8 @@
                                         <div class="results__tbl-cl"><input type="text" id="to" name="to" ></div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="results__tbl">
@@ -114,6 +116,35 @@
         </div>
     </div>
 <script>
+
+    const edgenerateList = (data) => {
+
+        console.log(data)
+        let b = document.getElementById('editcitynames');
+        for (const key in data) {
+            b.innerHTML = null,
+                data[key].data.forEach(e=>(b.innerHTML +='<option value="'+e.index+'">'+e.name+'</option>'));
+        }
+    }
+    var editserahanal = document.getElementById("editserahanal");
+
+    editserahanal.addEventListener("keyup",  ()=> {
+
+        // console.log( serahanal.value);
+        let b = document.getElementById('editcitynames');
+        const csrfToken = "{{csrf_token()}}"
+        fetch('/api/nameanal?halfindex='+serahanal.value, {
+            method: 'GET',
+
+        })
+            .then(response => response.json())
+            // .then(nameanalyzes=>nameanalyzes.data)
+            .then(nameanalyzes => {
+                edgenerateList(nameanalyzes)
+
+            })
+
+    });
     function delAnal(id, url){
         // let id =document.getElementById("del").dataset.id
         //
@@ -140,7 +171,7 @@ function dataUpdateAnal(analyze) {
   document.getElementById("editmiddlename").value=analyze.user.middle_name
     document.getElementById("editinz").value=analyze.inz
    document.getElementById("editemail").value=analyze.user.email
-   document.getElementById("editanalname").value=analyze.name
+   document.getElementById("editserahanal").value=analyze.name
     document.getElementById("editcl").value=analyze.date
 
     // document.getElementById('hfr').innerHTML=href;
@@ -161,7 +192,7 @@ function dataUpdateAnal(analyze) {
         data.append( 'middle_name', document.getElementById("editmiddlename").value)
         data.append( 'inz', document.getElementById("editinz").value)
         data.append( 'email', document.getElementById("editemail").value)
-        data.append( 'analname', document.getElementById("editanalname").value)
+        data.append( 'analname', document.getElementById("editserahanal").value)
         data.append( 'date', document.getElementById("editcl").value)
 
         fetch('/updateAnal', {
@@ -180,7 +211,7 @@ function dataUpdateAnal(analyze) {
     var secdateel = document.getElementById("to");
 
     var frstdateel = document.getElementById("from");
-    secdateel.addEventListener("keydown",  ()=> {
+    secdateel.addEventListener("keyup",  ()=> {
 
         document.location.href = '/admin?dateto=' + secdateel.value + '&datefrom='+ frstdateel.value;
     });
