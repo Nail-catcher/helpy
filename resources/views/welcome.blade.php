@@ -44,9 +44,28 @@
 
     <script>
         function redir(){
+
+
             let inz = document.getElementById('inz').value;
             let shortname = document.getElementById('shortname').value;
-            document.location.href = ' /simpleanalyzes?inz='+inz+'&short_name='+shortname;
+            fetch(' api/simpleanalyzes?inz='+inz+'&short_name='+shortname, {
+                method: 'GET',
+
+        })
+        .then(response => response.json())
+        // .then(nameanalyzes=>nameanalyzes.data)
+            .then(analyzes => {
+                console.log(analyzes)
+                if(analyzes.data.length >0){
+                    document.location.href = ' /simpleanalyzes?inz='+inz+'&short_name='+shortname;
+                } else {
+                    alert('Неправильный ИНЗ или ФИО')
+                }
+
+
+            })
+
+            // document.location.href = ' /simpleanalyzes?inz='+inz+'&short_name='+shortname;
         }
 
     </script>

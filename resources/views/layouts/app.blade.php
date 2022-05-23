@@ -168,25 +168,13 @@
                         <div class="modal-form__row">
                             <div class="modal-form__title">№ наименования анализа</div>
                             <div class="modal-form__inp">
-                                {{--<div class="select" >--}}
 
-                                    {{--<select id="cfl">--}}
-                                        {{--<option value="1">№ наименования анализа</option>--}}
-                                        {{--<option value="2">2</option>--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
                                 <input type="text" class="input"  id="serahanal" name="city" list="citynames">
                                 <datalist id="citynames">
                                     {{--<option value="Boston">--}}
                                     {{--<option value="Cambridge">--}}
                                 </datalist>
-                                {{--<input class="input" id="serahanal">--}}
-                                {{--<select class="input" id="hueta">--}}
 
-                                    {{--<option>хуй</option>--}}
-                                    {{--<option>хуй1</option>--}}
-                                    {{--<option>хуй2</option>--}}
-                                {{--</<select>--}}
 
 
                             </div>
@@ -265,8 +253,8 @@
                             <div class="modal-form__inp">
                                 <input type="text" class="input"  id="editserahanal" name="city" list="citynames">
                                 <datalist id="editcitynames">
-                                    {{--<option value="Boston">--}}
-                                    {{--<option value="Cambridge">--}}
+                                    {{--<option value="323">--}}
+                                    {{--<option value="534534">--}}
                                 </datalist>
                             </div>
                         </div>
